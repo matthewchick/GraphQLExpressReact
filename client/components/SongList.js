@@ -6,7 +6,7 @@ class SongList extends Component {
     renderSongs() {
         return this.props.data.songs.map(song => {
             return (
-                <li>
+                <li key={song.id}>
                 {song.title}
                 </li>
             )
@@ -15,7 +15,7 @@ class SongList extends Component {
     render() {
         console.log (this.props);
         if (this.props.data.loading) { return <div>Loading ...</div>; }
-        
+
         return (
         <div>
             {this.renderSongs()}
@@ -27,6 +27,7 @@ class SongList extends Component {
 const query = gql`
     {
         songs{
+            id
             title
         }
     }
