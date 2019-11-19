@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// https://medium.com/@nicknauert/mongooses-model-populate-b844ae6d1ee7
 const LyricSchema = new Schema({
   song: {
     type: Schema.Types.ObjectId,
