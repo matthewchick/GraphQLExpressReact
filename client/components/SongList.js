@@ -5,13 +5,11 @@ import { Link } from 'react-router';
 import query from '../queries/fetchSongs';
 
 class SongList extends Component {
-
     // through mutation this.props.mutate() to pass external param to gql
     onSongDelete(id) {
         this.props.mutate({ variables: { id } })
         .then(() => this.props.data.refetch());
     }
-
     renderSongs() {
         return this.props.data.songs.map(({id, title}) => {
             return (
@@ -27,7 +25,6 @@ class SongList extends Component {
     render() {
         console.log (this.props);
         if (this.props.data.loading) { return <div>Loading ...</div>; }
-
         //https://material-ui.com/components/material-icons/
         return (
             <div>
@@ -41,7 +38,6 @@ class SongList extends Component {
         );
     }
 }
-
 const mutation = gql`
     mutation DeleteSong($id: ID) {
         deleteSong(id: $id){
@@ -49,7 +45,6 @@ const mutation = gql`
         }
     }
 `;
-
 export default graphql(mutation) (
     graphql(query)(SongList)
 );
