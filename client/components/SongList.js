@@ -6,6 +6,7 @@ import query from '../queries/fetchSongs';
 
 class SongList extends Component {
 
+    // through mutation this.props.mutate() to pass external param to gql
     onSongDelete(id) {
         this.props.mutate({ variables: { id } })
         .then(() => this.props.data.refetch());
@@ -34,7 +35,7 @@ class SongList extends Component {
                 <Link to="/songs/new" className="btn-floating btn-large red right">
                 <i className="material-icons">add</i>
                 </Link>
-            </div>      
+            </div>
         );
     }
 }
