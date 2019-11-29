@@ -12,11 +12,11 @@ class SongCreate extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        
+        // use refetchQueries to refresh Apollo Store data
         this.props.mutate({
             variables: {title: this.state.title},
             refetchQueries: [{ query }]
-        }).then(() => hashHistory.push('/'))     //jump back to localhost:4000/  
+        }).then(() => hashHistory.push('/'))     //jump back to localhost:4000/
     }
 
     render() {
@@ -26,7 +26,7 @@ class SongCreate extends Component {
                 <h3>Create a New Song</h3>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Song Title: </label>
-                    <input 
+                    <input
                         onChange={event => this.setState( { title: event.target.value })}
                         value={this.state.title}
                     />

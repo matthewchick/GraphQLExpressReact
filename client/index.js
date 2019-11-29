@@ -10,7 +10,10 @@ import './style/style.css';
 import SongDetail from './components/SongDetail';
 
 //https://www.apollographql.com/docs/react/get-started/
-const client = new ApolloClient({});
+//https://www.apollographql.com/docs/react/caching/cache-configuration/
+const client = new ApolloClient({
+  dataIdFromObject: o => o.id
+});
 
 const Root = () => {
   return (
@@ -21,9 +24,9 @@ const Root = () => {
           <Route path="songs/new" component={SongCreate} />
           <Route path="songs/:id" component={SongDetail} />
         </Route>
-      </Router>     
+      </Router>
     </ApolloProvider>
-  );    
+  );
 };
 
 ReactDOM.render(
