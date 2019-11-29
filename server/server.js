@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 
 // Replace with your mongoLab URI
-const MONGO_URI = 'mongodb+srv://chikmatthew:Password1@nodeecommerce-2qbaf.mongodb.net/test?retryWrites=true&w=majority';
+const MONGO_URI = 'mongodb+srv://username:password@nodeecommerce-2qbaf.mongodb.net/test?retryWrites=true&w=majority';
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI');
 }
@@ -17,7 +17,7 @@ if (!MONGO_URI) {
 mongoose.Promise = global.Promise;
 //mongoose.connect(MONGO_URI);
 mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
     useFindAndModify: false
