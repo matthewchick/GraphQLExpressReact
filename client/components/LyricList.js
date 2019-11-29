@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { optimistic } from 'apollo-client/optimistic-data/store';
 class LyricList extends Component {
-  onLike(id) {
+  onLike(id, likes) {
     // console.log(id);
     this.props.mutate({
-      variables: { id: id }
+      variables: { id: id },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        likeLyric: {
+          id: id,
+          __typename: 'LyricType',
+          likes: likes + 1
+        }
+      }
     })
   }
   renderLyrics() {
@@ -13,10 +22,12 @@ class LyricList extends Component {
       return (
         <li key = {id} className="collection-item">
           {content}
-          <i className="material-icons"
-            onClick={() => this.onLike(id)}
-          >thumb_up</i>
-          {likes}
+          <div className="vote-box">
+            <i className="material-icons"
+            onClick={() => this.onLike(id, likes)}
+            >thumb_up</i>
+            {likes}
+          </div>
         </li>
       );
     });
